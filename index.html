@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stopwatch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">  
+</head>
+<body>
+  <div class="app" role="application" aria-label="Stopwatch">
+    <header>
+      <div>
+        <div class="badge">Stopwatch</div>
+        <div class="title" style="font-size: clamp(18px, 3vw, 22px); margin-top:6px">Precision Timer with Laps</div>
+      </div>
+      <button id="exportCsv" class="btn ghost" title="Export laps to CSV" aria-label="Export laps">Export CSV</button>
+    </header>
+
+    <section class="timer" aria-live="polite">
+      <div id="display" class="time">00:00:00.00</div>
+      <div class="sub">Use <span class="kbd">Space</span> to Start/Pause · <span class="kbd">L</span> Lap · <span class="kbd">R</span> Reset</div>
+    </section>
+
+    <div class="controls">
+      <button id="startPause" class="btn primary" aria-pressed="false">Start</button>
+      <button id="lap" class="btn" disabled>Lap</button>
+      <button id="reset" class="btn danger" disabled>Reset</button>
+    </div>
+
+    <div class="grid">
+      <div class="card" aria-label="Lap list">
+        <h3>Laps</h3>
+        <div style="max-height: 280px; overflow:auto; border-radius:12px">
+          <table id="lapsTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Total</th>
+                <th>Split</th>
+                <th class="right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="lapsBody">
+              <tr><td colspan="4" class="tiny">No laps yet. Press <span class="kbd">L</span> while running.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row-end">
+          <button id="clearLaps" class="btn ghost" disabled>Clear Laps</button>
+        </div>
+      </div>
+
+      <div class="card" aria-label="Shortcuts & Info">
+        <h3>Shortcuts</h3>
+        <p class="tips">
+          <span class="kbd">Space</span> Start/Pause<br>
+          <span class="kbd">L</span> Add Lap<br>
+          <span class="kbd">R</span> Reset<br>
+        </p>
+        <h3>About</h3>
+        <p class="tiny">Accurate timing based on <code>performance.now()</code> and <code>requestAnimationFrame</code>. Laps include both total elapsed time and split since the previous lap.</p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+    
+
+
+</body>
+</html>
